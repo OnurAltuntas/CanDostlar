@@ -1,6 +1,7 @@
 package com.example.candostlar
 
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,10 +36,12 @@ class DostlarRecylerViewAdapter(tumDostlar:ArrayList<Dost>): RecyclerView.Adapte
             dostAdi.text=oanOlusturulanDost.isim
             dostResim.setImageResource(oanOlusturulanDost.resim)
 
-            tekDostBilgisi.setOnClickListener {
-                Toast.makeText(tekDostBilgisi.context,"Tıklanılan Öğe:"+position+"Adı:"+oanOlusturulanDost.isim,Toast.LENGTH_SHORT).show()
-                tekDostBilgisi.isClickable=false
+            tekDostBilgisi.setOnClickListener {v ->
 
+                var intent=Intent(v.context,DetayActivity::class.java)
+                intent.putExtra("ad",oanOlusturulanDost.isim)
+                intent.putExtra("resim",oanOlusturulanDost.resim)
+                v.context.startActivity(intent)
             }
 
         }
